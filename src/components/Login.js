@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button';
 import { CardContent } from '@material-ui/core';
 
 const LoginCard = styled(Card)`
-width: 50%
-height: 50%
+width: 50%;
+margin: auto;
+height: 50%;
 `;
 
 const LoginTextField = styled(TextField)`
@@ -31,7 +32,7 @@ class Login extends React.Component {
             <CardContent>
                <Typography styles={{fontSize: 14, textAlign: 'center'}} variant="h5">Log In</Typography>
             </CardContent>
-            <div style={{margin: '0 10px 0 10px' }}>
+            <div style={{ margin: '0 10px 0 10px' }}>
                <LoginTextField
                   id="outlined-basic"
                   label="Username"
