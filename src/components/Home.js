@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Login from './Login';
+import SignUp from './SignUp';
 
 
 const Main = styled.div`
@@ -29,21 +30,22 @@ text-align: center;
 class Home extends Component {
    constructor(props) {
       super(props);
-      this.state = {isLoggedIn: false};
+      this.state = {toLogin: false, toSignUp: false};
    }
    render() {
       return (
          <Main> {
-            !this.state.isLoggedIn &&
+            !this.state.toLogin && !this.state.toSignUp &&
             <TextContainer>
                <MainText>Screen tenants, or find roomates all within seconds.</MainText>
-               <Button variant="contained" color="primary" onClick={ () => this.setState({isLoggedIn: true}) }>
+               <Button variant="contained" color="primary" onClick={ () => this.setState({toLogin: true}) }>
                   Login
                </Button>
-               <Button variant="contained" color="primary">Sign Up</Button>
-            </TextContainer>
+               <Button variant="contained" color="primary" onClick={ () => this.setState({toSignUp: true})}>Sign Up</Button>
+            </TextContainer>  
          }
-            {this.state.isLoggedIn && <Login/>}
+            {this.state.toLogin && <Login/>}
+            {this.state.toSignUp && <SignUp/>}
          </Main>
       );
    }
