@@ -3,11 +3,12 @@ import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import { CardContent } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const LoginCard = styled(Card)`
 width: 50%;
 margin: auto;
-height: 50%;
 `;
 
 const SignUpTextField = styled(TextField)`
@@ -22,6 +23,7 @@ const formSpacing = {
 class SignUp extends Component {
    constructor(props) {
       super(props);
+      console.log(props);
       this.state = { firstName: '', lastName: '', email: '', password: '', submitDisabled: true};
    }
 
@@ -44,13 +46,20 @@ class SignUp extends Component {
       this.setState({submitDisabled: true});
    }
 
+   returnToHome = () => {
+      this.props.signUp();
+   }
+
    render() {
       return (
          <LoginCard>
             <form>
+            <CardContent>
+               <Typography styles={{fontSize: 14, textAlign: 'center'}} variant="h5">Log In</Typography>
+            </CardContent>
                <div style={formSpacing}>
                   <SignUpTextField
-                     id="outlined-basic"
+                     id="first-name"
                      label="First Name"
                      margin="normal"
                      onChange={(event) => this.handleChange('firstName', event)}
@@ -60,7 +69,7 @@ class SignUp extends Component {
                </div>
                <div style={formSpacing}>
                   <SignUpTextField
-                     id="outlined-basic"
+                     id="last-name"
                      label="Last Name"
                      margin="normal"
                      onChange={(event) => this.handleChange('lastName', event)}
@@ -70,7 +79,7 @@ class SignUp extends Component {
                </div>
                <div style={formSpacing}>
                   <SignUpTextField
-                     id="outlined-basic"
+                     id="email"
                      label="Email"
                      onChange={(event) => this.handleChange('email', event)}
                      margin="normal"
@@ -80,7 +89,7 @@ class SignUp extends Component {
                </div>
                <div style={formSpacing}>
                   <SignUpTextField
-                     id="outlined-password-input"
+                     id="password-input"
                      label="Password"
                      value={this.state.password}
                      onChange={(event) => this.handleChange('password', event)}
@@ -92,7 +101,9 @@ class SignUp extends Component {
                   />
                </div>
                <Button variant="outlined" color="primary" onClick={() => this.submitForm()}
-               style={{margin: "0 10px 0 10px", float: 'right'}} disabled={this.state.submitDisabled}>Submit</Button>
+               style={{margin: "0 10px 10px 10px", float: 'right'}} disabled={this.state.submitDisabled}>Submit</Button>
+               <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
+               style={{margin: "0 10px 10px 10px", float: 'right'}}>Back</Button>
             </form>
          </LoginCard>
       )

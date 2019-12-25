@@ -32,20 +32,25 @@ class Home extends Component {
       super(props);
       this.state = {toLogin: false, toSignUp: false};
    }
+
+   goHome = () => {
+      this.setState({toSignUp: false, toLogin: false});
+   }
+
    render() {
       return (
          <Main> {
             !this.state.toLogin && !this.state.toSignUp &&
             <TextContainer>
                <MainText>Screen tenants, or find roomates all within seconds.</MainText>
-               <Button variant="contained" color="primary" onClick={ () => this.setState({toLogin: true}) }>
+               <Button variant="contained" color="primary" onClick={() => this.setState({toLogin: true}) }>
                   Login
                </Button>
-               <Button variant="contained" color="primary" onClick={ () => this.setState({toSignUp: true})}>Sign Up</Button>
+               <Button variant="contained" color="primary" onClick={() => this.setState({toSignUp: true})}>Sign Up</Button>
             </TextContainer>  
          }
-            {this.state.toLogin && <Login/>}
-            {this.state.toSignUp && <SignUp/>}
+            {this.state.toLogin && <Login login={this.goHome}/>}
+            {this.state.toSignUp && <SignUp signUp={this.goHome}/>}
          </Main>
       );
    }

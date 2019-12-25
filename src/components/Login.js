@@ -9,7 +9,6 @@ import { CardContent } from '@material-ui/core';
 const LoginCard = styled(Card)`
 width: 50%;
 margin: auto;
-height: 50%;
 `;
 
 const LoginTextField = styled(TextField)`
@@ -26,6 +25,10 @@ class Login extends React.Component {
    handleChange = (stateProp, event) => {
       this.setState({[stateProp]: event.target.value});
    }
+
+   returnToHome = () => {
+      this.props.login();
+   }
    render() {
       return (
          <LoginCard>
@@ -34,7 +37,7 @@ class Login extends React.Component {
             </CardContent>
             <div style={{ margin: '0 10px 0 10px' }}>
                <LoginTextField
-                  id="outlined-basic"
+                  id="username"
                   label="Username"
                   value={this.state.loginText}
                   onChange={this.handleChange}
@@ -45,7 +48,7 @@ class Login extends React.Component {
             </div>
             <div style={{margin: '0 10px 0 10px' }}>
                <LoginTextField
-                  id="outlined-password-input"
+                  id="password"
                   label="Password"
                   value={this.state.passwordText}
                   onChange={(event) => this.handleChange('passwordText', event)}
@@ -60,6 +63,8 @@ class Login extends React.Component {
                <Button variant="contained" color="primary" style={{margin: "0 10px 0 10px", float: 'right'}}>
                   Submit
                </Button>
+               <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
+               style={{margin: "0 10px 10px 10px", float: 'right'}}>Back</Button>
             </div>
          </LoginCard>
       )

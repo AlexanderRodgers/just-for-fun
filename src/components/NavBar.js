@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,23 +20,30 @@ const useStyles = makeStyles(theme => ({
  }));
  
 
-export default function NavBar() {
-   const classes = useStyles();
-
-   return (
-      <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Realty For Me
-          </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Sign Up</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-   )
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { };
+    this.classes = useStyles();
+  }
+   render() {
+     return (
+        <div className={this.classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" className={this.classes.menuButton} color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" className={this.classes.title}>
+              <Button style={{color: 'white'}}>Home</Button>
+            </Typography>
+            <Button color="inherit" onClick={() => this.props.setLogin(true)}>Login</Button>
+            <Button color="inherit">Sign Up</Button>
+          </Toolbar>
+        </AppBar>
+      </div>
+     );
+   }
 }
+
+export default NavBar;
