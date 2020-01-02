@@ -5,7 +5,7 @@ import Home from './components/Home';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { displayLogin: false, displaySignUp: false}
+    this.state = { displayLogin: false, displaySignUp: false };
   }
 
   goHome = () => {
@@ -16,11 +16,19 @@ class App extends Component {
     this.setState({displayLogin: state});
   }
 
+  setSignUp = (state) => {
+    this.setState({displaySignUp: state});
+  }
+
+  updateSignUp = (state) => {
+    this.setState({toSignUp: true});
+  }
+
   render() {
     return (
       <div>
-        <Navbar setLogin={this.setLogin}/>
-        <Home/>
+        <Navbar setLogin={this.setLogin} setSignUp={this.setSignUp}/>
+        <Home updateSignUp={this.state.displaySignUp} toLogin={this.state.displayLogin}/>
       </div>
     );
   }

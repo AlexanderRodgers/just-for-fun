@@ -23,8 +23,7 @@ const formSpacing = {
 class SignUp extends Component {
    constructor(props) {
       super(props);
-      console.log(props);
-      this.state = { firstName: '', lastName: '', email: '', password: '', submitDisabled: true};
+      this.state = { firstName: '', lastName: '', email: '', password: '', submitDisabled: true };
    }
 
    handleChange = (stateProp, event) => {

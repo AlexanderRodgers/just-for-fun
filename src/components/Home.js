@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import Login from './Login';
 import SignUp from './SignUp';
 
-
 const Main = styled.div`
 display: flex;
 margin: auto;
@@ -30,7 +29,10 @@ text-align: center;
 class Home extends Component {
    constructor(props) {
       super(props);
-      this.state = {toLogin: false, toSignUp: false};
+      this.state = { 
+         toLogin: !!props.toLogin ? props.toLogin : false, 
+         toSignUp: !!props.toSignUp ? props.toSignUp : false 
+      };
    }
 
    goHome = () => {
