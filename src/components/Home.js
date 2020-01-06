@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Login from './Login';
 import SignUp from './SignUp';
+import { connect } from 'react-redux';
 
 const Main = styled.div`
 display: flex;
@@ -44,6 +45,7 @@ class Home extends Component {
          <Main> {
             !this.state.toLogin && !this.state.toSignUp &&
             <TextContainer>
+               <p></p>
                <MainText>Screen tenants, or find roomates all within seconds.</MainText>
                <Button variant="contained" color="primary" onClick={() => this.setState({toLogin: true}) }>
                   Login
@@ -55,6 +57,18 @@ class Home extends Component {
             {this.state.toSignUp && <SignUp signUp={this.goHome}/>}
          </Main>
       );
+   }
+}
+
+const mapStateToProps = (state) => {
+   return {
+      login: state.toLogin
+   };
+}
+
+const matchDispatchToProps = () => {
+   return {
+      
    }
 }
 
