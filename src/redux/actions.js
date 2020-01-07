@@ -1,6 +1,6 @@
 import { TO_HOME, TO_SIGNUP, TO_LOGIN } from './actionTypes';
 
-export const toSignup = () => {
+export const toSignUp = () => {
   return {
     type: TO_SIGNUP
   };

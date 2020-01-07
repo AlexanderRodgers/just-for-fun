@@ -9,7 +9,6 @@ const initialState = {
 const registrationReducer = (state = initialState, action) => {
    switch (action.type) {
       case TO_LOGIN:
-         console.log('reducing!');
          return {
             ...state,
             toLogin: true,

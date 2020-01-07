@@ -2,7 +2,7 @@ import registrationReducer from './registration';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({
-   toLogin: registrationReducer,
+   registration: registrationReducer,
 });
 
 export default allReducers;

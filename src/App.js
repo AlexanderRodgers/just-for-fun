@@ -8,26 +8,10 @@ class App extends Component {
     this.state = { displayLogin: false, displaySignUp: false };
   }
 
-  goHome = () => {
-    this.setState({ displayLogin: false, displaySignUp: false });
-  }
-
-  setLogin = (state) => {
-    this.setState({ displayLogin: state });
-  }
-
-  setSignUp = (state) => {
-    this.setState({ displaySignUp: state });
-  }
-
-  updateSignUp = (state) => {
-    this.setState({ toSignUp: true });
-  }
-
   render() {
     return (
       <div>
-        <Navbar setLogin={this.setLogin} setSignUp={this.setSignUp} />
+        <Navbar />
         <Home />
       </div>
     );
