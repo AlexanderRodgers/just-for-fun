@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Login from './Login';
 import SignUp from './SignUp';
 import { connect } from 'react-redux';
+import { toSignup, toLogin, toHome } from '../redux/actions';
 
 const Main = styled.div`
 display: flex;
@@ -30,14 +31,21 @@ text-align: center;
 class Home extends Component {
    constructor(props) {
       super(props);
-      this.state = { 
-         toLogin: !!props.toLogin ? props.toLogin : false, 
-         toSignUp: !!props.toSignUp ? props.toSignUp : false 
+      this.state = {
+         toLogin: false,
+         toSignup: false,
+         toHome: true
       };
+      console.log(this.props);
    }
 
    goHome = () => {
-      this.setState({toSignUp: false, toLogin: false});
+      this.setState({ toSignUp: false, toLogin: false });
+   }
+
+   handlePageView = () => {
+      this.props.toLogin();
+      console.log(this.state);
    }
 
    render() {
@@ -45,31 +53,29 @@ class Home extends Component {
          <Main> {
             !this.state.toLogin && !this.state.toSignUp &&
             <TextContainer>
-               <p></p>
                <MainText>Screen tenants, or find roomates all within seconds.</MainText>
-               <Button variant="contained" color="primary" onClick={() => this.setState({toLogin: true}) }>
+               <Button variant="contained" color="primary" onClick={() => this.handlePageView()}>
                   Login
                </Button>
-               <Button variant="contained" color="primary" onClick={() => this.setState({toSignUp: true})}>Sign Up</Button>
-            </TextContainer>  
+               <Button variant="contained" color="primary" onClick={() => this.handlePageView()}>Sign Up</Button>
+            </TextContainer>
          }
-            {this.state.toLogin && <Login login={this.goHome}/>}
-            {this.state.toSignUp && <SignUp signUp={this.goHome}/>}
-         </Main>
+            {this.state.toLogin && <Login login={this.goHome} />}
+            {this.state.toSignUp && <SignUp signUp={this.goHome} />}
+         </Main >
       );
    }
 }
 
 const mapStateToProps = (state) => {
+   console.log(state);
    return {
-      login: state.toLogin
-   };
-}
-
-const matchDispatchToProps = () => {
-   return {
-      
+      toLogin: state.toLogin,
+      toSignup: state.toSignup,
+      toHome: state.toHome
    }
 }
 
-export default Home; 
+export default connect(mapStateToProps, { toHome, toSignup, toLogin })(Home);
+
+//export default Home; 

@@ -9,26 +9,26 @@ class App extends Component {
   }
 
   goHome = () => {
-    this.setState({displayLogin: false, displaySignUp: false});
+    this.setState({ displayLogin: false, displaySignUp: false });
   }
 
   setLogin = (state) => {
-    this.setState({displayLogin: state});
+    this.setState({ displayLogin: state });
   }
 
   setSignUp = (state) => {
-    this.setState({displaySignUp: state});
+    this.setState({ displaySignUp: state });
   }
 
   updateSignUp = (state) => {
-    this.setState({toSignUp: true});
+    this.setState({ toSignUp: true });
   }
 
   render() {
     return (
       <div>
-        <Navbar setLogin={this.setLogin} setSignUp={this.setSignUp}/>
-        <Home updateSignUp={this.state.displaySignUp} toLogin={this.state.displayLogin}/>
+        <Navbar setLogin={this.setLogin} setSignUp={this.setSignUp} />
+        <Home />
       </div>
     );
   }
