@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Login from './Login';
-import SignUp from './SignUp';
+import SignUp from './SignUp.js';
 import { connect } from 'react-redux';
 import { toSignUp, toLogin, toHome } from '../redux/actions';
 
@@ -24,67 +24,67 @@ margin: auto;
 const MainText = styled.h1`
 color: white;
 margin: auto auto 15px auto;
-font-size: 1.7em;
+font-size: 3em;
 text-align: center;
 `;
 
 class Home extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         toLogin: false,
-         toSignUp: false,
-         toHome: true
-      };
-   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      toLogin: false,
+      toSignUp: false,
+      toHome: true
+    };
+  }
 
-   goHome = () => {
-      this.props.toHome();
-   }
+  goHome = () => {
+    this.props.toHome();
+  }
 
-   handlePageView = (stateChange) => {
-      switch (stateChange) {
-         case 'login':
-            this.props.toLogin();
-            break;
-         case 'signUp':
-            this.props.toSignUp();
-            break;
-         case 'home':
-            this.props.toHome();
-            break;
-         default:
-            return;
-      }
-   };
+  handlePageView = (stateChange) => {
+    switch (stateChange) {
+      case 'login':
+        this.props.toLogin();
+        break;
+      case 'signUp':
+        this.props.toSignUp();
+        break;
+      case 'home':
+        this.props.toHome();
+        break;
+      default:
+        return;
+    }
+  };
 
-   render() {
-      console.log(this.props);
-      return (
-         <Main> {
-            !this.props.login && !this.props.signUp &&
-            <TextContainer>
-               <MainText>Screen tenants, or find roomates all within seconds.</MainText>
-               <Button variant="contained" color="primary" onClick={() => this.handlePageView('login')}>
-                  Login
+  render() {
+    console.log(this.props);
+    return (
+      <Main> {
+        !this.props.login && !this.props.signUp &&
+        <TextContainer>
+          <MainText>Screen tenants, or find roomates all within seconds.</MainText>
+          <Button variant="contained" color="primary" onClick={() => this.handlePageView('login')}>
+            Login
                </Button>
-               <Button variant="contained" color="primary" onClick={() => this.handlePageView('signUp')}>Sign Up</Button>
-            </TextContainer>
-         }
-            {this.props.login && <Login login={this.goHome} />}
-            {this.props.signUp && <SignUp signUp={this.goHome} />}
-         </Main >
-      );
-   }
+          <Button variant="contained" color="primary" onClick={() => this.handlePageView('signUp')}>Sign Up</Button>
+        </TextContainer>
+      }
+        {this.props.login && <Login login={this.goHome} />}
+        {this.props.signUp && <SignUp signUp={this.goHome} />}
+      </Main >
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-   console.log(state.registration);
-   return {
-      home: state.registration.toHome,
-      login: state.registration.toLogin,
-      signUp: state.registration.toSignUp
-   };
+  console.log(state.registration);
+  return {
+    home: state.registration.toHome,
+    login: state.registration.toLogin,
+    signUp: state.registration.toSignUp
+  };
 };
 
 export default connect(mapStateToProps, { toHome, toSignUp, toLogin })(Home);
