@@ -17935,7 +17935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "E:\\GitProjects\\nextjs\\pages\\_app.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\pages\\_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
 
 

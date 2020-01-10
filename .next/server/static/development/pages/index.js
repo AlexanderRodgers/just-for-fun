@@ -106,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_components_NavBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/components/NavBar */ "./src/components/NavBar.js");
 /* harmony import */ var _src_components_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/Home */ "./src/components/Home.js");
-var _jsxFileName = "E:\\GitProjects\\nextjs\\App.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\App.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -263,7 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "E:\\GitProjects\\nextjs\\pages\\index.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\pages\\index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -312,7 +312,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/actions */ "./src/redux/actions.js");
 
-var _jsxFileName = "E:\\GitProjects\\nextjs\\src\\components\\Home.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\Home.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -475,7 +475,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__);
 
-var _jsxFileName = "E:\\GitProjects\\nextjs\\src\\components\\Login.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\Login.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -654,7 +654,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../redux/actions */ "./src/redux/actions.js");
 
-var _jsxFileName = "E:\\GitProjects\\nextjs\\src\\components\\NavBar.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\NavBar.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -831,7 +831,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "@material-ui/core/Typography");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__);
 
-var _jsxFileName = "E:\\GitProjects\\nextjs\\src\\components\\SignUp.js";
+var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\SignUp.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1193,7 +1193,7 @@ const registrationReducer = (state = initialState, action) => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\GitProjects\nextjs\pages\index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! E:\GitProjects\real-estate\pages\index.js */"./pages/index.js");
 
 
 /***/ }),

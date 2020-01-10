@@ -6,7 +6,13 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.5.1",
     "clsx": "latest",
+    "graphql": "^14.5.8",
+    "koa": "^2.11.0",
+    "koa-graphql": "^0.8.0",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.8.6",
     "next": "latest",
+    "nodemon": "^2.0.2",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
@@ -17,6 +23,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "nodemon server/app.js"
   }
 }
