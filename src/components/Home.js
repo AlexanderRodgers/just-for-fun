@@ -59,7 +59,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Main> {
         !this.props.login && !this.props.signUp &&
@@ -79,7 +78,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.registration);
   return {
     home: state.registration.toHome,
     login: state.registration.toLogin,

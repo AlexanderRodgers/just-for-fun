@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -106,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_components_NavBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/components/NavBar */ "./src/components/NavBar.js");
 /* harmony import */ var _src_components_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/Home */ "./src/components/Home.js");
-var _jsxFileName = "E:\\GitProjects\\real-estate\\App.js";
+var _jsxFileName = "C:\\GitProjects\\real-estate\\App.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -257,32 +257,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Index; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../App */ "./App.js");
-/* harmony import */ var _src_redux_reducers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/redux/reducers */ "./src/redux/reducers/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "E:\\GitProjects\\real-estate\\pages\\index.js";
+/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-client */ "apollo-client");
+/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_client__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../App */ "./App.js");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! node-fetch */ "node-fetch");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! apollo-link-http */ "apollo-link-http");
+/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(apollo_link_http__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _src_redux_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../src/redux/reducers */ "./src/redux/reducers/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! apollo-cache-inmemory */ "apollo-cache-inmemory");
+/* harmony import */ var apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_9__);
+var _jsxFileName = "C:\\GitProjects\\real-estate\\pages\\index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
 
-const store = Object(redux__WEBPACK_IMPORTED_MODULE_3__["createStore"])(_src_redux_reducers__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
+
+
+
+const store = Object(redux__WEBPACK_IMPORTED_MODULE_6__["createStore"])(_src_redux_reducers__WEBPACK_IMPORTED_MODULE_5__["default"]);
+const client = new apollo_client__WEBPACK_IMPORTED_MODULE_1___default.a({
+  link: Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_4__["createHttpLink"])({
+    uri: 'http://localhost:4200/graphql',
+    fetch: node_fetch__WEBPACK_IMPORTED_MODULE_3___default.a
+  }),
+  cache: new apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_8__["InMemoryCache"]()
+});
+client.query({
+  query: apollo_boost__WEBPACK_IMPORTED_MODULE_9__["gql"]`
+    query {
+      events {
+        date
+        _id
+      }
+    }
+  `
+}).then(res => console.log(res));
 function Index() {
-  return __jsx(react_redux__WEBPACK_IMPORTED_MODULE_4__["Provider"], {
+  return __jsx(react_redux__WEBPACK_IMPORTED_MODULE_7__["Provider"], {
     store: store,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 34
     },
     __self: this
-  }, __jsx(_App__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, __jsx(_App__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 35
     },
     __self: this
   }));
@@ -312,7 +344,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../redux/actions */ "./src/redux/actions.js");
 
-var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\Home.js";
+var _jsxFileName = "C:\\GitProjects\\real-estate\\src\\components\\Home.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -377,23 +409,22 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
   }
 
   render() {
-    console.log(this.props);
     return __jsx(Main, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 63
       },
       __self: this
     }, " ", !this.props.login && !this.props.signUp && __jsx(TextContainer, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 65
       },
       __self: this
     }, __jsx(MainText, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 66
       },
       __self: this
     }, "Screen tenants, or find roomates all within seconds."), __jsx(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -402,7 +433,7 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       onClick: () => this.handlePageView('login'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 67
       },
       __self: this
     }, "Login"), __jsx(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -411,21 +442,21 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       onClick: () => this.handlePageView('signUp'),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 70
       },
       __self: this
     }, "Sign Up")), this.props.login && __jsx(_Login__WEBPACK_IMPORTED_MODULE_4__["default"], {
       login: this.goHome,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 74
+        lineNumber: 73
       },
       __self: this
     }), this.props.signUp && __jsx(_SignUp_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
       signUp: this.goHome,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75
+        lineNumber: 74
       },
       __self: this
     }));
@@ -434,7 +465,6 @@ class Home extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 }
 
 const mapStateToProps = state => {
-  console.log(state.registration);
   return {
     home: state.registration.toHome,
     login: state.registration.toLogin,
@@ -475,7 +505,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__);
 
-var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\Login.js";
+var _jsxFileName = "C:\\GitProjects\\real-estate\\src\\components\\Login.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -654,7 +684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _redux_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../redux/actions */ "./src/redux/actions.js");
 
-var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\NavBar.js";
+var _jsxFileName = "C:\\GitProjects\\real-estate\\src\\components\\NavBar.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -831,7 +861,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Typography */ "@material-ui/core/Typography");
 /* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_7__);
 
-var _jsxFileName = "E:\\GitProjects\\real-estate\\src\\components\\SignUp.js";
+var _jsxFileName = "C:\\GitProjects\\real-estate\\src\\components\\SignUp.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
@@ -1186,14 +1216,14 @@ const registrationReducer = (state = initialState, action) => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\GitProjects\real-estate\pages\index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! C:\GitProjects\real-estate\pages\index.js */"./pages/index.js");
 
 
 /***/ }),
@@ -1297,6 +1327,50 @@ module.exports = require("@material-ui/icons/Menu");
 
 /***/ }),
 
+/***/ "apollo-boost":
+/*!*******************************!*\
+  !*** external "apollo-boost" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-boost");
+
+/***/ }),
+
+/***/ "apollo-cache-inmemory":
+/*!****************************************!*\
+  !*** external "apollo-cache-inmemory" ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-cache-inmemory");
+
+/***/ }),
+
+/***/ "apollo-client":
+/*!********************************!*\
+  !*** external "apollo-client" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-client");
+
+/***/ }),
+
+/***/ "apollo-link-http":
+/*!***********************************!*\
+  !*** external "apollo-link-http" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-link-http");
+
+/***/ }),
+
 /***/ "core-js/library/fn/object/define-properties":
 /*!**************************************************************!*\
   !*** external "core-js/library/fn/object/define-properties" ***!
@@ -1360,6 +1434,17 @@ module.exports = require("core-js/library/fn/object/get-own-property-symbols");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/keys");
+
+/***/ }),
+
+/***/ "node-fetch":
+/*!*****************************!*\
+  !*** external "node-fetch" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("node-fetch");
 
 /***/ }),
 
