@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Login from './Login';
 import SignUp from './SignUp.js';
 import { connect } from 'react-redux';
 import { toSignUp, toLogin, toHome } from '../redux/actions';
+
 
 const Main = styled.div`
 display: flex;
@@ -32,6 +34,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoggedIn: false,
       toLogin: false,
       toSignUp: false,
       toHome: true
@@ -40,6 +43,11 @@ class Home extends Component {
 
   goHome = () => {
     this.props.toHome();
+  }
+
+  submitForm = () => {
+    this.setState({ isLoggedIn: true });
+    Router.push('/dashboard');
   }
 
   handlePageView = (stateChange) => {
@@ -70,7 +78,7 @@ class Home extends Component {
           <Button variant="contained" color="primary" onClick={() => this.handlePageView('signUp')}>Sign Up</Button>
         </TextContainer>
       }
-        {this.props.login && <Login login={this.goHome} />}
+        {this.props.login && <Login login={this.goHome} submit={this.submitForm} />}
         {this.props.signUp && <SignUp signUp={this.goHome} />}
       </Main >
     );

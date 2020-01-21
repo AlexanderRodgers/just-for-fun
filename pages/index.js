@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { gql } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 const store = createStore(allReducers);
 
 const client = new ApolloClient({
@@ -32,7 +33,9 @@ client.query({
 export default function Index() {
   return (
     <Provider store={store}>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </Provider>
   );
 }

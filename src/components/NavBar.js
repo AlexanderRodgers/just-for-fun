@@ -70,7 +70,6 @@ NavBar.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.registration);
   return {
     home: state.registration.toHome,
     login: state.registration.toLogin,

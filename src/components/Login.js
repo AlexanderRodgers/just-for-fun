@@ -18,16 +18,31 @@ width: 100%
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loginText: '', passwordText: '' };
+    this.state = { loginText: '', passwordText: '', isDisabled: true };
   }
 
   handleChange = (stateProp, event) => {
-    this.setState({ [stateProp]: event.target.value });
+    this.setState({ [stateProp]: event.target.value }, () => {
+      this.updateDisabledState();
+    });
   }
 
   returnToHome = () => {
     this.props.login();
   }
+
+  updateDisabledState = () => {
+    if (!!this.state.loginText && !!this.state.passwordText) {
+      this.setState({ isDisabled: false });
+      return;
+    }
+    this.setState({ isDisabled: true });
+  }
+
+  submitLogin = () => {
+    this.props.submit();
+  }
+
   render() {
     return (
       <LoginCard>
@@ -39,7 +54,7 @@ class Login extends React.Component {
             id="username"
             label="Username"
             value={this.state.loginText}
-            onChange={this.handleChange}
+            onChange={() => this.handleChange('loginText', event)}
             margin="normal"
             variant="outlined"
             required
@@ -59,9 +74,12 @@ class Login extends React.Component {
           />
         </div>
         <div>
-          <Button variant="contained" color="primary" style={{ margin: "0 10px 0 10px", float: 'right' }}>
+          <Button variant="contained" color="primary"
+            style={{ margin: "0 10px 0 10px", float: 'right' }}
+            disabled={this.state.isDisabled}
+            onClick={() => this.submitLogin()}>
             Submit
-               </Button>
+          </Button>
           <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
             style={{ margin: "0 10px 10px 10px", float: 'right' }}>Back</Button>
         </div>
