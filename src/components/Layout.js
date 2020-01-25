@@ -1,10 +1,10 @@
 import NavBar from './Navbar';
 import { connect } from 'react-redux';
 import { toSignUp, toLogin, toHome } from '../redux/actions';
-import { useContext } from 'react';
+import rootContext from '../contexts/rootContext';
 
 const layoutStyle = {
-  backgroundColor: 'black'
+  background: 'linear-gradient(to right, #6dd5ed, #2193b0)',
 }
 
 const mapStateToProps = (state) => {
@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
 };
 
 const Layout = props => {
-  const myContext = useContext(rootContext);
   return (
     <div style={layoutStyle}>
       <NavBar />
@@ -25,5 +24,7 @@ const Layout = props => {
   );
 }
 
-export default connect(mapStateToProps, { toHome, toSignUp, toLogin },
-  null, { context: myContext })(Layout);
+export default connect(mapStateToProps,
+  { toHome, toSignUp, toLogin },
+  null,
+  { context: rootContext })(Layout);

@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { toSignUp, toLogin, toHome } from '../redux/actions';
+import rootContext from '../contexts/rootContext';
 
 const useStyles = theme => ({
   root: {
@@ -77,4 +78,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { toSignUp, toLogin, toHome })(withStyles(useStyles)(NavBar));
+export default connect(mapStateToProps,
+  { toSignUp, toLogin, toHome },
+  null,
+  { context: rootContext }
+)(withStyles(useStyles)(NavBar));

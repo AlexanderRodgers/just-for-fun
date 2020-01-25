@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from './src/components/Layout';
 import Home from './src/components/Home';
 import fetch from 'node-fetch';
@@ -10,6 +10,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { gql } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-client';
+import rootContext from './src/contexts/rootContext';
 
 const store = createStore(allReducers);
 const client = new ApolloClient({
@@ -30,8 +31,6 @@ client.query({
     }
   `
 }).then(res => console.log(res));
-
-const rootContext = React.createContext();
 
 const App = () => {
   return (
