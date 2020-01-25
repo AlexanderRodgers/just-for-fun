@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Login from './Login';
 import SignUp from './SignUp.js';
-import { connect } from 'react-redux';
-import { toSignUp, toLogin, toHome } from '../redux/actions';
-
 
 const Main = styled.div`
 display: flex;
@@ -85,12 +82,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    home: state.registration.toHome,
-    login: state.registration.toLogin,
-    signUp: state.registration.toSignUp
-  };
-};
-
-export default connect(mapStateToProps, { toHome, toSignUp, toLogin })(Home);
+export default Home;
