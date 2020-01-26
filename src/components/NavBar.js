@@ -7,9 +7,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from "prop-types";
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { connect } from 'react-redux';
-import { toSignUp, toLogin, toHome } from '../redux/actions';
-import rootContext from '../contexts/rootContext';
 
 const useStyles = theme => ({
   root: {
@@ -23,27 +20,13 @@ const useStyles = theme => ({
   },
 });
 
+
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
-  handlePageView = (stateChange) => {
-    switch (stateChange) {
-      case 'login':
-        this.props.toLogin();
-        break;
-      case 'signUp':
-        this.props.toSignUp();
-        break;
-      case 'home':
-        this.props.toHome();
-        break;
-      default:
-        return;
-    }
-  };
 
   render() {
     const { classes } = this.props;
@@ -55,10 +38,10 @@ class NavBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              <Button style={{ color: 'white' }} onClick={() => this.handlePageView('home')}>Home</Button>
+              <Button style={{ color: 'white' }} onClick={() => this.props.handleUserState('toHome')}>Home</Button>
             </Typography>
-            <Button color="inherit" onClick={() => this.handlePageView('login')}>Login</Button>
-            <Button color="inherit" onClick={() => this.handlePageView('signUp')}>Sign Up</Button>
+            <Button color="inherit" onClick={() => this.props.handleUserState('toLogin')}>Login</Button>
+            <Button color="inherit" onClick={() => this.props.handleUserState('toSignUp')}>Sign Up</Button>
           </Toolbar>
         </AppBar>
       </div>
@@ -70,16 +53,4 @@ NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    home: state.registration.toHome,
-    login: state.registration.toLogin,
-    signUp: state.registration.toSignUp
-  };
-};
-
-export default connect(mapStateToProps,
-  { toSignUp, toLogin, toHome },
-  null,
-  { context: rootContext }
-)(withStyles(useStyles)(NavBar));
+export default (withStyles(useStyles)(NavBar));
