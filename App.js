@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from './src/components/Layout';
 import Home from './src/components/Home';
 import fetch from 'node-fetch';
 import { createHttpLink } from 'apollo-link-http';
-import allReducers from './src/redux/reducers';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { gql } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-client';
-import rootContext from './rootContext';
 
-const store = createStore(allReducers);
 const client = new ApolloClient({
   link: createHttpLink({
     uri: 'http://localhost:4200/graphql',

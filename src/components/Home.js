@@ -31,15 +31,15 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false,
       toLogin: false,
       toSignUp: false,
       toHome: true
     };
+    this.userState = this.props.userState;
   }
 
   goHome = () => {
-    this.props.toHome();
+    this.props.handleUserState();
   }
 
   submitForm = () => {
@@ -47,36 +47,26 @@ class Home extends Component {
     Router.push('/dashboard');
   }
 
-  handlePageView = (stateChange) => {
-    switch (stateChange) {
-      case 'login':
-        this.props.toLogin();
-        break;
-      case 'signUp':
-        this.props.toSignUp();
-        break;
-      case 'home':
-        this.props.toHome();
-        break;
-      default:
-        return;
+  componentDidUpdate(previousProps) {
+    if (previousProps.data !== this.props.data) {
+      this.setState({ userState: { ...this.props.data.userState } })
     }
-  };
+  }
 
   render() {
     return (
       <Main> {
-        !this.props.login && !this.props.signUp &&
+        !this.props.userState.toLogin && !this.props.userState.toSignUp &&
         <TextContainer>
-          <MainText>Screen tenants, or find roomates all within seconds.</MainText>
-          <Button variant="contained" color="primary" onClick={() => this.handlePageView('login')}>
+          <MainText>What is the purpose of this website?</MainText>
+          <Button variant="contained" color="primary" onClick={() => this.props.handleUserState('toLogin')}>
             Login
                </Button>
-          <Button variant="contained" color="primary" onClick={() => this.handlePageView('signUp')}>Sign Up</Button>
+          <Button variant="contained" color="primary" onClick={() => this.props.handleUserState('toSignUp')}>Sign Up</Button>
         </TextContainer>
       }
-        {this.props.login && <Login login={this.goHome} submit={this.submitForm} />}
-        {this.props.signUp && <SignUp signUp={this.goHome} />}
+        {this.props.userState.toLogin && <Login login={this.goHome} submit={this.submitForm} />}
+        {this.props.userState.toSignUp && <SignUp signUp={this.goHome} />}
       </Main >
     );
   }
