@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { CardContent } from '@material-ui/core';
 
+import gql from 'graphql-tag';
+
 const LoginCard = styled(Card)`
 width: 50%;
 margin: auto;

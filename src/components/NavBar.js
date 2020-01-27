@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import PropTypes from "prop-types";
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { withRouter } from 'next/router';
+import Router from 'next/router';
 
 const useStyles = theme => ({
   root: {
@@ -20,12 +22,17 @@ const useStyles = theme => ({
   },
 });
 
-
-
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+
+  // Need to update so that the correct state actually loads.
+  routeUser = (userState) => {
+    this.props.handleUserState(userState);
+    Router.push('/');
   }
 
   render() {
@@ -40,7 +47,7 @@ class NavBar extends Component {
             <Typography variant="h6" className={classes.title}>
               <Button style={{ color: 'white' }} onClick={() => this.props.handleUserState('toHome')}>Home</Button>
             </Typography>
-            <Button color="inherit" onClick={() => this.props.handleUserState('toLogin')}>Login</Button>
+            <Button color="inherit" onClick={() => this.routeUser('toLogin')}>Login</Button>
             <Button color="inherit" onClick={() => this.props.handleUserState('toSignUp')}>Sign Up</Button>
           </Toolbar>
         </AppBar>
@@ -53,4 +60,4 @@ NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default (withStyles(useStyles)(NavBar));
+export default withRouter(withStyles(useStyles)(NavBar));

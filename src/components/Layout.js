@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import NavBar from './Navbar';
 
 const layoutStyle = {
+  height: '100vh',
+  width: '100vw',
   background: '-webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */',
   background: 'linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */'
 }
+
+// Need to figure out how to redirect to homepage when someone clicks something from the navbar and they're not at home
 
 const Layout = props => {
   const [userState, updateUserState] = useState({ toLogin: false, toSignUp: false, toHome: true });

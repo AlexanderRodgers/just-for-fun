@@ -4,8 +4,10 @@ const Router = require('koa-router');
 const graphqlHttp = require('koa-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const Event = require('./models/event');
+const User = require('./models/user');
 
 const app = new Koa();
 app.use(cors());
@@ -21,6 +23,14 @@ router.all('/graphql', graphqlHttp({
       date: String!
     }
 
+    type User {
+      _id: ID!
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String
+    }
+
     type RootQuery {
       events: [Event!]!
     }
@@ -32,8 +42,16 @@ router.all('/graphql', graphqlHttp({
       date: String!
     }
 
+    input UserInput {
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    }
+
     type RootMutation {
       createEvent(eventInput: EventInput): Event
+      createUser(userInput: UserInput): User
     }
 
     schema {
@@ -73,6 +91,29 @@ router.all('/graphql', graphqlHttp({
           console.log(err);
           throw err;
         });
+    },
+    createUser: (args) => {
+      return User.findOne({ email: args.userInput.email })
+        .then(user => {
+          if (user) {
+            throw new Error('User exists already!');
+          }
+          return bcrypt.hash(args.userInput.password, 12)
+        })
+        .then(hashedPassword => {
+          const user = new User({
+            firstName: args.userInput.firstName,
+            lastName: args.userInput.lastName,
+            email: args.userInput.email,
+            password: hashedPassword
+          });
+          return user.save();
+        })
+        .then(result => {
+          return { ...result._doc, password: null, _id: result.id };
+        })
+        .catch(err => { throw err });
+
     }
   },
   graphiql: true,

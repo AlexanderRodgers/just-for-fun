@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '../src/components/Layout';
+import { Typography } from '@material-ui/core';
 
 const Dashboard = () => {
-  const [resource, setResource] = useState('posts');
-
   return (
     <Layout>
-      <div>
-        <div>
-          <button onClick={() => setResource('howdy')}>Howdy</button>
-          <button onClick={() => setResource('there')}>There</button>
-        </div>
-        {resource}
-      </div>
+      <Typography variant='h2'>Hello Person, Welcome Back!</Typography>
     </Layout>
   );
 }
