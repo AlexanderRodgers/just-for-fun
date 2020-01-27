@@ -1,6 +1,4 @@
 import NavBar from './Navbar';
-import { connect } from 'react-redux';
-import rootContext from '../contexts/rootContext';
 
 const layoutStyle = {
   width: '100vw',
@@ -17,4 +15,4 @@ const Layout = props => {
   );
 }
 
-export default connect(null, null, null, { context: rootContext })(Layout);
+export default Layout;

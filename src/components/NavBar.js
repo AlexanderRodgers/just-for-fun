@@ -7,9 +7,6 @@ import Button from '@material-ui/core/Button';
 import PropTypes from "prop-types";
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { connect } from 'react-redux';
-import { toSignUp, toLogin, toHome } from '../redux/actions';
-import rootContext from '../contexts/rootContext';
 
 const useStyles = theme => ({
   root: {
@@ -70,16 +67,4 @@ NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    home: state.registration.toHome,
-    login: state.registration.toLogin,
-    signUp: state.registration.toSignUp
-  };
-};
-
-export default connect(mapStateToProps,
-  { toSignUp, toLogin, toHome },
-  null,
-  { context: rootContext }
-)(withStyles(useStyles)(NavBar));
+export default (withStyles(useStyles)(NavBar));

@@ -54,7 +54,7 @@ class Home extends Component {
   handlePageView = (stateChange) => {
     switch (stateChange) {
       case 'login':
-        this.props.toLogin();
+        this.setState.;
         break;
       case 'signUp':
         this.props.toSignUp();
@@ -72,7 +72,7 @@ class Home extends Component {
       <Main> {
         !this.props.login && !this.props.signUp &&
         <TextContainer>
-          <MainText>Screen tenants, or find roomates all within seconds.</MainText>
+          <MainText>What is this website even for?</MainText>
           <Button variant="contained" color="primary" onClick={() => this.handlePageView('login')}>
             Login
                </Button>
@@ -94,9 +94,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { toHome, toSignUp, toLogin },
-  null,
-  { context: rootContext }
-)(Home);
+export default Home;
