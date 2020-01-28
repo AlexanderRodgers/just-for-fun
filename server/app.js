@@ -33,6 +33,7 @@ router.all('/graphql', graphqlHttp({
 
     type RootQuery {
       events: [Event!]!
+      login(email: String!, password: String!): User
     }
 
     input EventInput {
@@ -66,6 +67,28 @@ router.all('/graphql', graphqlHttp({
           return { ...event._doc, _id: event._doc._id.toString() };
         })
       }).catch(err => { throw err });
+    },
+    login: (args) => {
+      let newUser;
+      return User.findOne({ email: args.email })
+        .then(user => {
+          if (!user) {
+            throw new Error('User does not exist');
+          }
+          newUser = user;
+          return user.password;
+        })
+        .then(pass => {
+          return bcrypt.compare(args.password, pass).then(res => res);
+        })
+        .then(isMatch => {
+          if (isMatch) {
+            return { ...newUser._doc, password: null };
+          } else {
+            return null;
+          }
+        })
+        .catch(e => { throw e })
     },
     createEvent: (args) => {
       // const event = {

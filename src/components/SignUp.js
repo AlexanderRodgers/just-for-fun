@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { CardContent } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import gql from 'graphql-tag';
+import { ADD_USER } from '../api/queries';
 import { Mutation } from '@apollo/react-components';
 
 const LoginCard = styled(Card)`
@@ -53,60 +53,76 @@ class SignUp extends Component {
 
   render() {
     return (
-      <LoginCard>
-        <form>
-          <CardContent>
-            <Typography styles={{ fontSize: 14, textAlign: 'center' }} variant="h5">Log In</Typography>
-          </CardContent>
-          <div style={formSpacing}>
-            <SignUpTextField
-              id="first-name"
-              label="First Name"
-              margin="normal"
-              onChange={(event) => this.handleChange('firstName', event)}
-              variant="outlined"
-              required
-            />
-          </div>
-          <div style={formSpacing}>
-            <SignUpTextField
-              id="last-name"
-              label="Last Name"
-              margin="normal"
-              onChange={(event) => this.handleChange('lastName', event)}
-              variant="outlined"
-              required
-            />
-          </div>
-          <div style={formSpacing}>
-            <SignUpTextField
-              id="email"
-              label="Email"
-              onChange={(event) => this.handleChange('email', event)}
-              margin="normal"
-              variant="outlined"
-              required
-            />
-          </div>
-          <div style={formSpacing}>
-            <SignUpTextField
-              id="password-input"
-              label="Password"
-              value={this.state.password}
-              onChange={(event) => this.handleChange('password', event)}
-              type="password"
-              autoComplete="current-password"
-              margin="normal"
-              variant="outlined"
-              required
-            />
-          </div>
-          <Button variant="outlined" color="primary" onClick={() => this.submitForm()}
-            style={{ margin: "0 10px 10px 10px", float: 'right' }} disabled={this.state.submitDisabled}>Submit</Button>
-          <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
-            style={{ margin: "0 10px 10px 10px", float: 'right' }}>Back</Button>
-        </form>
-      </LoginCard>
+      <Mutation mutation={ADD_USER}>
+        {(createUser) => (
+          <LoginCard>
+            <form>
+              <CardContent>
+                <Typography styles={{ fontSize: 14, textAlign: 'center' }} variant="h5">Log In</Typography>
+              </CardContent>
+              <div style={formSpacing}>
+                <SignUpTextField
+                  id="first-name"
+                  label="First Name"
+                  margin="normal"
+                  onChange={(event) => this.handleChange('firstName', event)}
+                  variant="outlined"
+                  required
+                />
+              </div>
+              <div style={formSpacing}>
+                <SignUpTextField
+                  id="last-name"
+                  label="Last Name"
+                  margin="normal"
+                  onChange={(event) => this.handleChange('lastName', event)}
+                  variant="outlined"
+                  required
+                />
+              </div>
+              <div style={formSpacing}>
+                <SignUpTextField
+                  id="email"
+                  label="Email"
+                  onChange={(event) => this.handleChange('email', event)}
+                  margin="normal"
+                  variant="outlined"
+                  required
+                />
+              </div>
+              <div style={formSpacing}>
+                <SignUpTextField
+                  id="password-input"
+                  label="Password"
+                  value={this.state.password}
+                  onChange={(event) => this.handleChange('password', event)}
+                  type="password"
+                  autoComplete="current-password"
+                  margin="normal"
+                  variant="outlined"
+                  required
+                />
+              </div>
+              <Button variant="outlined" color="primary" onClick={() => {
+                this.submitForm();
+                createUser({
+                  variables: {
+                    userInput: { firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password }
+                  }
+                })
+                  .then(res => {
+                    console.log(res);
+                    this.returnToHome();
+                  })
+                  .catch(e => console.log(e));
+              }}
+                style={{ margin: "0 10px 10px 10px", float: 'right' }} disabled={this.state.submitDisabled}>Submit</Button>
+              <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
+                style={{ margin: "0 10px 10px 10px", float: 'right' }}>Back</Button>
+            </form>
+          </LoginCard>
+        )}
+      </Mutation>
     )
   }
 }

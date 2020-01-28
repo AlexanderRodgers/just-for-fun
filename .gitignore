@@ -4,6 +4,7 @@
 /node_modules
 
 # misc
+next.config.js
 .env
 .DS_Store
 .env.local

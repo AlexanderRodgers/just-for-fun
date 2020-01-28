@@ -7,7 +7,6 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { gql } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-client';
-import rootContext from './src/contexts/rootContext';
 
 const client = new ApolloClient({
   link: createHttpLink({

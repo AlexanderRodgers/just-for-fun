@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { CardContent } from '@material-ui/core';
-
-import gql from 'graphql-tag';
+import { withApollo } from 'react-apollo';
+import { LOGIN } from '../api/queries';
 
 const LoginCard = styled(Card)`
 width: 50%;
@@ -21,6 +21,16 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loginText: '', passwordText: '', isDisabled: true };
+  }
+
+  runQuery = () => {
+    this.props.client.query({
+      query: LOGIN,
+      variables: {
+        email: this.state.loginText,
+        password: this.state.passwordText
+      }
+    }).then(res => console.log(res)).catch(e => console.log(e));
   }
 
   handleChange = (stateProp, event) => {
@@ -79,15 +89,15 @@ class Login extends React.Component {
           <Button variant="contained" color="primary"
             style={{ margin: "0 10px 0 10px", float: 'right' }}
             disabled={this.state.isDisabled}
-            onClick={() => this.submitLogin()}>
+            onClick={() => this.runQuery()}>
             Submit
-          </Button>
+            </Button>
           <Button variant="outlined" color="primary" onClick={() => this.returnToHome()}
             style={{ margin: "0 10px 10px 10px", float: 'right' }}>Back</Button>
         </div>
       </LoginCard>
-    )
+    );
   }
 }
 
-export default Login;
+export default withApollo(Login);

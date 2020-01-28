@@ -6,5 +6,5 @@ export const testUrl = 'https://sandbox.iexapis.com/stable/time-series/REPORTED_
 
 export const testFunction = async () => {
   const result = await axios.get(`${testUrl}${process.env.testApiKey}`).then(data => data);
-  console.log(result);
+  return result;
 } 
