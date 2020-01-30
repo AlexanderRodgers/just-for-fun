@@ -8,20 +8,30 @@ const BlockInfo = () => {
 
   useEffect(() => {
     getGainers().then(res => {
+      console.log(res.data);
       setGainers(res.data);
     })
-  }, [gainers]);
+  }, []);
 
   return (
     <div>
-      {gainers.length !== 0 &&
-        gainers.map(stock => {
-          <Card>
+      {gainers && gainers.map((gainer, index) => {
+        return (
+          <Card key={index} style={{ maxWidth: "50%" }} color="secondary">
             <CardContent>
-              <Typography>{stock.symbol}</Typography>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Typography gutterBottom style={{ flexGrow: 1 }}><b>{gainer.symbol}</b></Typography>
+                <Typography variant="h6">+{gainer.changePercent.toFixed(2)}%</Typography>
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h5" style={{ flexGrow: 1 }}>{gainer.companyName}</Typography>
+                <Typography><b>{gainer.iexRealtimePrice}</b></Typography>
+              </div>
             </CardContent>
           </Card>
-        })}
+        );
+      })
+      }
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from './Navbar';
+import SideBar from './SideBar';
 
 const layoutStyle = {
   height: '100%',
@@ -25,7 +26,9 @@ const Layout = props => {
   }
   return (
     <div style={layoutStyle}>
-      <NavBar handleUserState={handleUserState} />
+      <div>
+        <SideBar />
+      </div>
       {React.Children.map(props.children, child => {
         if (child.type.name === 'Home') {
           return React.cloneElement(props.children, { userState, handleUserState });

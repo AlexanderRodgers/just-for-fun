@@ -1547,22 +1547,30 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
         lineNumber: 13
       },
       __self: this
-    })), __jsx("body", {
+    }), __jsx("link", {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/icon?family=Material+Icons",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 17
       },
       __self: this
-    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
+    })), __jsx("body", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 19
       },
       __self: this
-    }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 20
+      },
+      __self: this
+    }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
       },
       __self: this
     })));
@@ -1600,7 +1608,7 @@ MyDocument.getInitialProps = async ctx => {
     enhanceApp: App => props => sheets.collect(__jsx(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__["default"])({}, props, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 56
+        lineNumber: 57
       },
       __self: undefined
     })))
