@@ -3,13 +3,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Input, InputLabel, InputAdornment, Icon } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { getSymbols } from '../api/';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-function sleep(delay = 0) {
-  return new Promise(resolve => {
-    setTimeout(resolve, delay);
-  });
-}
 
 export default function Asynchronous() {
   const [open, setOpen] = React.useState(false);
@@ -24,14 +19,15 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await axios.get('https://country.register.gov.uk/records.json?page-size=5000');
-      console.log(response);
-      await sleep(1e3); // For demo purposes.
-      const countries = await response.data;
-
+      const result = await getSymbols();
+      const symbols = await result.data;
+      symbols.slice(100);
       if (active) {
-        setOptions(Object.keys(countries).map(key => countries[key].item[0]));
+        setOptions(symbols.map(symbol => {
+          return { symbol: symbol.symbol, name: symbol.name }
+        }));
       }
+
     })();
 
     return () => {
@@ -56,22 +52,21 @@ export default function Asynchronous() {
         setOpen(false);
       }}
       getOptionSelected={(option, value) => option.name === value.name}
-      getOptionLabel={option => option.name}
+      getOptionLabel={option => option.symbol}
       options={options}
       loading={loading}
       renderInput={params => (
         <div>
           <TextField
             {...params}
-            label="Asynchronous"
+            label="Search by Symbol"
             fullWidth
-            color="secondary"
             variant="standard"
             InputProps={{
               ...params.InputProps,
               startAdornment: (
                 <InputAdornment position="start">
-                  <Icon>account_circle</Icon>
+                  <Icon>search</Icon>
                 </InputAdornment>
               ),
               endAdornment: (

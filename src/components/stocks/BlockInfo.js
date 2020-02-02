@@ -3,7 +3,6 @@ import Card from '@material-ui/core/Card';
 import { CardContent, Typography } from '@material-ui/core';
 
 const BlockInfo = (props) => {
-  console.log(props)
   return (
     <div>Hello
       {props.values && props.values.map((gainer, index) => {

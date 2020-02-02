@@ -177,16 +177,14 @@ const Layout = (props) => {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {React.Children.map(props.children, child => {
-          if (child.type.name === 'Home') {
-            return React.cloneElement(props.children, { userState, handleUserState });
-          } else {
-            return child;
-          }
-        })}
-      </main>
+      <div className={classes.toolbar} />
+      {React.Children.map(props.children, child => {
+        if (child.type.name === 'Home') {
+          return React.cloneElement(props.children, { userState, handleUserState });
+        } else {
+          return child;
+        }
+      })}
     </div>
   );
 }

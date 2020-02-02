@@ -14,4 +14,9 @@ export const getDummyData = async () => {
 export const getGainers = async () => {
   const result = await axios.get(`${gainers}${process.env.testApiKey}`).then(data => data);
   return result;
-} 
+}
+
+export const getSymbols = async () => {
+  const result = await axios.get(`${baseUrl}/stable/ref-data/symbols?token=${process.env.testApiKey}`);
+  return result;
+}
