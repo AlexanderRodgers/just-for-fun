@@ -2,6 +2,7 @@
   "env": {
     "MONGO_USER": "alex",
     "MONGO_PASSWORD": "fu689tiLe",
-    "MONGO_DB": "users"
+    "MONGO_DB": "users",
+    "JWT_SECRET_KEY": "Kudb18zkCACff9SnnobVhYWZKwxzl6YdjaWOq8s8eJFqXVZ3Ckvqm5wwIwrN5yj"
   }
 }

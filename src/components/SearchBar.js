@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Input, InputLabel, InputAdornment, Icon } from '@material-ui/core';
-import { Card, CardContent } from '@material-ui/core';
+import { InputAdornment, Icon } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getSymbols } from '../api/';
 import CircularProgress from '@material-ui/core/CircularProgress';

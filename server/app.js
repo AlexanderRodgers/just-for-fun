@@ -4,141 +4,16 @@ const Router = require('koa-router');
 const graphqlHttp = require('koa-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-
-const Event = require('./models/event');
-const User = require('./models/user');
+const schema = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
 
 const app = new Koa();
 app.use(cors());
 const router = new Router();
 
 router.all('/graphql', graphqlHttp({
-  schema: buildSchema(`
-    type Event {
-      _id: ID!
-      title: String!
-      description: String!
-      price: Float!
-      date: String!
-    }
-
-    type User {
-      _id: ID!
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String
-    }
-
-    type RootQuery {
-      events: [Event!]!
-      login(email: String!, password: String!): User
-    }
-
-    input EventInput {
-      title: String!
-      description: String!
-      price: Float!
-      date: String!
-    }
-
-    input UserInput {
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    }
-
-    type RootMutation {
-      createEvent(eventInput: EventInput): Event
-      createUser(userInput: UserInput): User
-    }
-
-    schema {
-      query: RootQuery
-      mutation: RootMutation
-    }
-  `),
-  rootValue: {
-    events: () => {
-      return Event.find().then(events => {
-        return events.map(event => {
-          return { ...event._doc, _id: event._doc._id.toString() };
-        })
-      }).catch(err => { throw err });
-    },
-    login: (args) => {
-      let newUser;
-      return User.findOne({ email: args.email })
-        .then(user => {
-          if (!user) {
-            throw new Error('User does not exist');
-          }
-          newUser = user;
-          return user.password;
-        })
-        .then(pass => {
-          return bcrypt.compare(args.password, pass).then(res => res);
-        })
-        .then(isMatch => {
-          if (isMatch) {
-            return { ...newUser._doc, password: null };
-          } else {
-            return null;
-          }
-        })
-        .catch(e => { throw e })
-    },
-    createEvent: (args) => {
-      // const event = {
-      // _id: Math.random().toString(),
-      // title: args.eventInput.title,
-      // description: args.eventInput.description,
-      // price: +args.eventInput.price,
-      // date: args.eventInput.date
-      // };
-      const event = new Event({
-        title: args.eventInput.title,
-        description: args.eventInput.description,
-        price: +args.eventInput.price,
-        date: new Date(args.eventInput.date)
-      });
-      return event
-        .save()
-        .then(res => {
-          console.log(res);
-          return { ...res._doc };
-        })
-        .catch(err => {
-          console.log(err);
-          throw err;
-        });
-    },
-    createUser: (args) => {
-      return User.findOne({ email: args.userInput.email })
-        .then(user => {
-          if (user) {
-            throw new Error('User exists already!');
-          }
-          return bcrypt.hash(args.userInput.password, 12)
-        })
-        .then(hashedPassword => {
-          const user = new User({
-            firstName: args.userInput.firstName,
-            lastName: args.userInput.lastName,
-            email: args.userInput.email,
-            password: hashedPassword
-          });
-          return user.save();
-        })
-        .then(result => {
-          return { ...result._doc, password: null, _id: result.id };
-        })
-        .catch(err => { throw err });
-
-    }
-  },
+  schema: schema,
+  rootValue: resolvers,
   graphiql: true,
   pretty: true
 }));
