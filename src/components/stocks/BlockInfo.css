@@ -1,0 +1,8 @@
+.block_card {
+  max-width: 33%;
+  margin: 10px 0px 10px 0px;
+}
+
+.block_text {
+  flex-grow: 1;
+}

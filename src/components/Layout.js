@@ -120,7 +120,6 @@ const Layout = (props) => {
     <div className={classes.root} style={layoutStyle}>
       <CssBaseline />
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -177,14 +176,16 @@ const Layout = (props) => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.toolbar} />
-      {React.Children.map(props.children, child => {
-        if (child.type.name === 'Home') {
-          return React.cloneElement(props.children, { userState, handleUserState });
-        } else {
-          return child;
-        }
-      })}
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        {React.Children.map(props.children, child => {
+          if (child.type.name === 'Home') {
+            return React.cloneElement(props.children, { userState, handleUserState });
+          } else {
+            return child;
+          }
+        })}
+      </main>
     </div>
   );
 }
