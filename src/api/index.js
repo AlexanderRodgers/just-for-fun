@@ -20,3 +20,13 @@ export const getSymbols = async () => {
   const result = await axios.get(`${baseUrl}/stable/ref-data/symbols?token=${process.env.testApiKey}`);
   return result;
 }
+
+export const getQuote = async (symbol) => {
+  const result = await axios.get(`${baseUrl}/stable/stock/${symbol}/quote?token=${process.env.testApiKey}`);
+  return result;
+}
+
+export const getCompanyInfo = async (stock) => {
+  const result = await axios.get(`${baseUrl}/stable/stock/${stock}/company?token=${process.env.testApiKey}`);
+  return result;
+}
