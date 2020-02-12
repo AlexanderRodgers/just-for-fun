@@ -27,6 +27,10 @@ export const getQuote = async (symbol) => {
 }
 
 export const getCompanyInfo = async (stock) => {
-  const result = await axios.get(`${baseUrl}/stable/stock/${stock}/company?token=${process.env.testApiKey}`);
+  const result = await axios.get(`${baseUrl}/stable/stock/${stock}/company?token=${process.env.testApiKey}`)
+    .catch(error => {
+      console.error(error);
+      return null;
+    });
   return result;
 }

@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import tableData from '../../../mock/tableData';
 import { getCompanyInfo, getQuote } from '../../api';
 
 const useStyles = makeStyles({
@@ -15,8 +16,13 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+const formatMCap = (num) => {
+  if (num < 1e3) return num;
+  if (num >= 1e3 && num < 1e6) return +(num / 1e3).toFixed(3) + "K";
+  if (num >= 1e6 && num < 1e9) return +(num / 1e6).toFixed(3) + "M";
+  if (num >= 1e9 && num < 1e12) return +(num / 1e9).toFixed(3) + "B";
+  if (num >= 1e12) return +(num / 1e12).toFixed(3) + "T";
+
 }
 
 const BasicTable = (props) => {
@@ -24,16 +30,18 @@ const BasicTable = (props) => {
 
   useEffect(() => {
     let getData = async () => {
-      let stockList = [];
-      for (let company of props.companies) {
-        // Try to make both of these run at the same time.
-        let stockInfo = await getCompanyInfo(company).then(res => res.data);
-        let stockData = await getQuote(company).then(res => res.data);
-        // Figure out if reducing the number of keys will improve performance.
-        stockInfo = { ...stockInfo, ...stockData }
-        stockList.push(stockInfo);
-      }
-      setCompanyList(stockList);
+      // Commenting out because iex doesn't like me making all these requests while I'm testing.
+      // let stockList = [];
+      // for (let company of props.companies) {
+      //   // Try to make both of these run at the same time.
+      //   let stockInfo = await getCompanyInfo(company).then(res => res.data);
+      //   let stockData = await getQuote(company).then(res => res.data);
+      //   // Figure out if reducing the number of keys will improve performance.
+      //   stockInfo = { ...stockInfo, ...stockData };
+      //   stockList.push(stockInfo);
+      // }
+      // setCompanyList(stockList);
+      setCompanyList(tableData);
       return;
     }
 
@@ -69,7 +77,7 @@ const BasicTable = (props) => {
               <TableCell align="right">{row.industry}</TableCell>
               <TableCell align="right">{row.sector}</TableCell>
               <TableCell align="right">{row.country}</TableCell>
-              <TableCell align="right">{row.marketCap}</TableCell>
+              <TableCell align="right">{formatMCap(row.marketCap)}</TableCell>
               <TableCell align="right">{row.peRatio}</TableCell>
               <TableCell align="right">{row.changePercent}</TableCell>
               <TableCell align="right">{row.volume}</TableCell>
